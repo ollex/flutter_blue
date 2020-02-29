@@ -28,6 +28,12 @@ class FlutterBlue {
   LogLevel _logLevel = LogLevel.debug;
   LogLevel get logLevel => _logLevel;
 
+  /// Get All currently bonded devices (can fail after firmware updates) 
+  Future getBondedDevices() async {
+    List res = await _channel.invokeMethod('getBondedDevices');
+    return res;
+  }
+  
   /// Checks whether the device supports Bluetooth
   Future<bool> get isAvailable =>
       _channel.invokeMethod('isAvailable').then<bool>((d) => d);
