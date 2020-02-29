@@ -489,6 +489,16 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
                 result.success(null);
                 break;
             }
+                
+            case "getBondedDevices": {
+                Set<BluetoothDevice> r = mBluetoothAdapter.getBondedDevices();
+                ArrayList<String> ar = new ArrayList<String>();
+                for (BluetoothDevice d : r) {
+                    ar.add(d.getAddress());
+                }
+                result.success(ar);
+                break;
+            }
 
             case "mtu":
             {
